@@ -1,0 +1,428 @@
+:root {
+    /* Dark Theme (Default) - Emerald Green & Cyber Black */
+    --bg-primary: #070a08;
+    --bg-gradient: radial-gradient(circle at 20% 15%, rgba(16, 185, 129, 0.12) 0%, transparent 45%),
+                    radial-gradient(circle at 80% 85%, rgba(34, 197, 94, 0.08) 0%, transparent 45%),
+                    #070a08;
+    --card-bg: rgba(13, 20, 16, 0.85);
+    --card-border: rgba(16, 185, 129, 0.15);
+    --card-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.8), 0 0 1px rgba(16, 185, 129, 0.2);
+    --text-primary: #f0fdf4;
+    --text-secondary: #86a796;
+    --text-title: #ffffff;
+    --input-bg: #0c1410;
+    --input-border: #1a2e22;
+    --input-text: #f0fdf4;
+    --input-focus-border: #10b981;
+    --input-focus-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+    --input-placeholder: #527968;
+    --btn-bg: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    --btn-hover: linear-gradient(135deg, #059669 0%, #047857 100%);
+    --btn-shadow: 0 4px 16px rgba(16, 185, 129, 0.35);
+    --result-bg: #09100c;
+    --result-border: rgba(16, 185, 129, 0.25);
+    --result-title: #34d399;
+    --result-text: #ecfdf5;
+    --theme-btn-bg: rgba(13, 22, 17, 0.8);
+    --theme-btn-border: rgba(16, 185, 129, 0.2);
+    --theme-btn-text: #f0fdf4;
+}
+
+[data-theme="light"] {
+    /* Light Theme - Clean Emerald & White */
+    --bg-primary: #f4fbf7;
+    --bg-gradient: radial-gradient(circle at 15% 15%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
+                    radial-gradient(circle at 85% 85%, rgba(5, 150, 105, 0.08) 0%, transparent 50%),
+                    #f4fbf7;
+    --card-bg: #ffffff;
+    --card-border: #d1fae5;
+    --card-shadow: 0 10px 25px -5px rgba(6, 78, 59, 0.06), 0 0 1px rgba(0, 0, 0, 0.08);
+    --text-primary: #064e3b;
+    --text-secondary: #047857;
+    --text-title: #064e3b;
+    --input-bg: #ffffff;
+    --input-border: #a7f3d0;
+    --input-text: #064e3b;
+    --input-focus-border: #10b981;
+    --input-focus-shadow: 0 0 0 3px rgba(16, 185, 129, 0.18);
+    --input-placeholder: #6ee7b7;
+    --btn-bg: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    --btn-hover: linear-gradient(135deg, #059669 0%, #047857 100%);
+    --btn-shadow: 0 4px 14px rgba(16, 185, 129, 0.25);
+    --result-bg: #ffffff;
+    --result-border: #a7f3d0;
+    --result-title: #059669;
+    --result-text: #064e3b;
+    --theme-btn-bg: #ffffff;
+    --theme-btn-border: #a7f3d0;
+    --theme-btn-text: #064e3b;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg-gradient);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px 80px;
+    position: relative;
+}
+
+/* Theme Toggle Bar */
+.top-nav {
+    position: fixed;
+    top: 18px;
+    right: 22px;
+    z-index: 100;
+}
+
+.theme-toggle-btn {
+    background: var(--theme-btn-bg);
+    border: 1px solid var(--theme-btn-border);
+    color: var(--theme-btn-text);
+    padding: 8px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 13.5px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: transform 0.15s ease, background 0.2s ease;
+}
+
+.theme-toggle-btn:hover {
+    transform: translateY(-1px);
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Header */
+.header-section {
+    text-align: center;
+    margin-bottom: 34px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-title {
+    font-size: 34px;
+    font-weight: 800;
+    letter-spacing: -0.6px;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, #ffffff 20%, #34d399 60%, #10b981 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+[data-theme="light"] .main-title {
+    background: linear-gradient(135deg, #064e3b 20%, #059669 60%, #10b981 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    font-size: 15px;
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
+/* Developer Profile Badge */
+.developer-badge {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    padding: 12px 18px;
+    border-radius: 14px;
+    margin-top: 20px;
+    text-align: left;
+    box-shadow: var(--card-shadow);
+    backdrop-filter: blur(10px);
+    width: 100%;
+    max-width: 520px;
+    box-sizing: border-box;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.developer-badge:hover {
+    transform: translateY(-2px);
+    border-color: rgba(16, 185, 129, 0.35);
+}
+
+.developer-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
+    flex-shrink: 0;
+    border: 1.5px solid rgba(52, 211, 153, 0.6);
+}
+
+.developer-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.developer-role {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--result-title);
+}
+
+.developer-name {
+    font-size: 16.5px;
+    font-weight: 700;
+    color: var(--text-title);
+    line-height: 1.25;
+}
+
+.developer-details {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.4;
+    margin-top: 1px;
+}
+
+/* Sections */
+.feature-section {
+    width: 100%;
+    margin-bottom: 34px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.section-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-title);
+    text-align: center;
+    margin-bottom: 14px;
+    letter-spacing: -0.2px;
+}
+
+/* Input Row */
+.input-row {
+    display: flex;
+    width: 100%;
+    gap: 12px;
+    align-items: center;
+}
+
+.text-input {
+    flex: 1;
+    height: 44px;
+    padding: 0 16px;
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 10px;
+    font-size: 14.5px;
+    color: var(--input-text);
+    outline: none;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.text-input:focus {
+    border-color: var(--input-focus-border);
+    box-shadow: var(--input-focus-shadow);
+}
+
+.text-input::placeholder {
+    color: var(--input-placeholder);
+}
+
+/* Primary Button */
+.btn-primary {
+    height: 44px;
+    padding: 0 20px;
+    background: var(--btn-bg);
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    font-size: 14.5px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    box-shadow: var(--btn-shadow);
+    transition: background 0.2s ease, transform 0.12s ease, opacity 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary:hover:not(:disabled) {
+    background: var(--btn-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(16, 185, 129, 0.45);
+}
+
+.btn-primary:active:not(:disabled) {
+    transform: translateY(0) scale(0.98);
+}
+
+.btn-primary:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Result Box */
+.result-box {
+    width: 100%;
+    min-height: 44px;
+    background-color: var(--result-bg);
+    border: 1px solid var(--result-border);
+    border-radius: 12px;
+    margin-top: 14px;
+    box-shadow: var(--card-shadow);
+    box-sizing: border-box;
+    transition: all 0.25s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.result-box.has-content {
+    padding: 20px 24px;
+    min-height: auto;
+}
+
+.result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.result-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--result-title);
+    letter-spacing: -0.2px;
+}
+
+.copy-btn {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: var(--text-secondary);
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.copy-btn:hover {
+    color: var(--text-title);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.result-text {
+    font-family: 'Consolas', 'Courier New', Courier, monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--result-text);
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.loading-text {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--result-title);
+    font-style: italic;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+}
+
+/* Recommendations Section Specific Layout */
+.recommendations-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.recommendations-form .text-input {
+    max-width: 400px;
+    width: 100%;
+    flex: none;
+}
+
+.recommendations-form .btn-primary {
+    margin: 0 auto;
+}
+
+@media (max-width: 640px) {
+    body {
+        padding: 30px 16px 60px;
+    }
+    
+    .top-nav {
+        top: 12px;
+        right: 14px;
+    }
+    
+    .main-title {
+        font-size: 27px;
+    }
+    
+    .developer-badge {
+        gap: 12px;
+        padding: 10px 14px;
+        max-width: 100%;
+    }
+    
+    .developer-avatar {
+        width: 42px;
+        height: 42px;
+        font-size: 16px;
+    }
+    
+    .developer-name {
+        font-size: 15px;
+    }
+    
+    .developer-details {
+        font-size: 11px;
+    }
+    
+    .recommendations-form .text-input {
+        max-width: 100%;
+    }
+}
